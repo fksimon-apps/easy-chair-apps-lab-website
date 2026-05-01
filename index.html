@@ -5,117 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Easy Chair Apps Lab -- Thoughtful apps for everyday life." />
   <title>Easy Chair Apps Lab</title>
-  <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #f9f7f4;
-      color: #2c2c2c;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    header {
-      padding: 3rem 1.5rem 2rem;
-      text-align: center;
-    }
-
-    header img {
-      max-width: 180px;
-      width: 100%;
-      height: auto;
-    }
-
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem 1.5rem 4rem;
-    }
-
-    h1 {
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      color: #1a1a1a;
-      margin-bottom: 1rem;
-    }
-
-    .tagline {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      color: #555;
-      max-width: 480px;
-      line-height: 1.6;
-    }
-
-    .divider {
-      width: 48px;
-      height: 3px;
-      background-color: #c8a96e;
-      border-radius: 2px;
-      margin: 1.75rem auto;
-    }
-
-    .about {
-      margin-top: 4rem;
-      max-width: 580px;
-      text-align: left;
-      background: #fff;
-      border-radius: 12px;
-      padding: 2rem 2.25rem;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    }
-
-    .about h2 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #c8a96e;
-      margin-bottom: 1rem;
-    }
-
-    .about p {
-      font-size: 1rem;
-      color: #444;
-      line-height: 1.75;
-    }
-
-    .about p + p {
-      margin-top: 0.85rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.8rem;
-      color: #999;
-      border-top: 1px solid #ece9e4;
-    }
-
-    footer a { color: #999; margin: 0 0.5rem; text-decoration: none; }
-    footer a:hover { color: #c8a96e; }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <header>
+  <header class="home-header">
     <img src="logo.png" alt="Easy Chair Apps Lab logo" />
   </header>
 
-  <main>
-    <h1>Easy Chair Apps Lab</h1>
-    <div class="divider"></div>
-    <p class="tagline">Thoughtful apps for everyday life.</p>
+  <main class="home-main">
+
+    <section class="hero">
+      <h1>Easy Chair <span class="brand-gradient">Apps Lab</span></h1>
+      <div class="divider"></div>
+      <p class="tagline">Thoughtful apps for everyday life.</p>
+    </section>
+
+    <section class="apps">
+      <h2>Our Apps</h2>
+      <div class="app-grid">
+
+        <article class="app-card">
+          <div class="app-icon"></div>
+          <h3>Game Night Score Card</h3>
+          <p>Keep score effortlessly during game night. Track multiple players across multiple games — no paper, no arguments.</p>
+          <span class="app-coming-soon">Coming Soon</span>
+        </article>
+
+        <article class="app-card">
+          <div class="app-icon"></div>
+          <h3>Retirement Planner</h3>
+          <p>A calm, straightforward tool for thinking through retirement — projections, savings milestones, and peace of mind.</p>
+          <span class="app-coming-soon">Coming Soon</span>
+        </article>
+
+      </div>
+    </section>
 
     <div class="about">
       <h2>About</h2>
@@ -123,9 +48,10 @@
          useful in my own life. Creating software has always been a passion, and retirement
          has given me the freedom to pursue it purely for the joy of it.</p>
       <p>I make my apps available to others in the hope that they find them just as useful.
-         You can find them in the app store -- I hope you enjoy them as much as I enjoyed
+         You can find them in the app store &mdash; I hope you enjoy them as much as I enjoyed
          building them.</p>
     </div>
+
   </main>
 
   <footer>
@@ -133,6 +59,7 @@
     <p style="margin-top:0.5rem;">
       <a href="terms.html">Terms of Use</a>
       <a href="privacy.html">Privacy Policy</a>
+      <a href="support.html">Support</a>
     </p>
   </footer>
 
