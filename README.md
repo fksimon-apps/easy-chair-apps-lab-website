@@ -1,0 +1,42 @@
+# Easy Chair Apps Lab — Website
+
+Marketing and support website for Easy Chair Apps Lab apps. Hosted on GitHub Pages at [easychairappslab.com](https://easychairappslab.com).
+
+## Structure
+
+```
+index.html              Home page (app showcase, about)
+scorepad.html           ScorePad marketing page
+retirementplanner.html  Retirement Planner marketing page
+privacy.html            Privacy policy
+terms.html              Terms of use
+support.html            Support page
+styles.css              Shared stylesheet
+logo.png                Lab logo
+fonts/                  Self-hosted Fraunces font (woff2)
+scorepad/               ScorePad assets (icon)
+retirementplanner/      Retirement Planner assets (icon)
+```
+
+## Testing locally
+
+The site is plain HTML/CSS — no build step required. Serve it with Python's built-in HTTP server so fonts and relative paths resolve correctly:
+
+```bash
+cd /path/to/easy-chair-apps-lab-website
+python3 -m http.server 8000
+```
+
+Then open [http://localhost:8000](http://localhost:8000) in your browser.
+
+To use a different port:
+
+```bash
+python3 -m http.server 3000
+```
+
+> **Note:** Opening `index.html` directly as a `file://` URL works for most content, but the self-hosted fonts in `fonts/` may be blocked by the browser's CORS policy. Use the Python server to avoid this.
+
+## Deployment
+
+Pushes to `main` deploy automatically via GitHub Pages. The custom domain is configured in `CNAME`.
