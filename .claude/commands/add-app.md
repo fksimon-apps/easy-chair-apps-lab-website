@@ -18,10 +18,11 @@ Examples:
 
 1. Reads the MARKETING.md source file.
 2. Derives naming conventions from the display name.
-3. Creates a new detail page (`<slug>.html`) modeled on the existing app pages.
-4. Adds a new app card to `index.html`.
-5. Registers the new app in `.claude/commands/update-app-pages.md` so future `/update-app-pages` runs include it.
-6. Reports what was created and what still needs to be done manually (icon, App Store URL).
+3. Finds and copies the app icon from the source project (see Icon section below).
+4. Creates a new detail page (`<slug>.html`) modeled on the existing app pages.
+5. Adds a new app card to `index.html`.
+6. Registers the new app in `.claude/commands/update-app-pages.md` so future `/update-app-pages` runs include it.
+7. Reports what was created and what still needs to be done manually (App Store URL).
 
 ## Naming conventions
 
@@ -33,6 +34,30 @@ Derive these from the display name:
 | `css-prefix` | first letter of each word, lowercase, max 3 chars | `bt` |
 | `icon-path` | `<slug>/icon.png` | `budgettracker/icon.png` |
 | `html-file` | `<slug>.html` | `budgettracker.html` |
+
+## Copying the app icon
+
+The website expects the icon at `<slug>/icon.png`. Locate and copy it from the source project using this search order:
+
+1. **Check MARKETING.md for an explicit icon path.** Look for a line like:
+   `App icon: \`SomeApp/Resources/Assets.xcassets/AppIcon.appiconset/\``
+   If found, search that path for PNG files, pick the largest by file size, and copy it.
+
+2. **Search the project directory for Xcode asset catalogs.** The project directory is the folder containing MARKETING.md. Run:
+   ```bash
+   find <project_dir> -path "*/AppIcon.appiconset/*.png" | xargs ls -S 2>/dev/null | head -1
+   ```
+   Use the largest PNG found.
+
+3. **Fall back to a root-level icon file.** Look for `icon.png`, `Icon.png`, `AppIcon.png`, or `app-icon.png` directly in the project directory.
+
+Once a source file is found:
+```bash
+mkdir -p <slug>
+cp "<source_icon>" <slug>/icon.png
+```
+
+If no icon can be found after all three steps, continue scaffolding and note in the final report that the icon must be placed manually at `<slug>/icon.png`.
 
 ## Building the detail page
 
@@ -114,8 +139,7 @@ Add a row to the source-to-page mapping table in `.claude/commands/update-app-pa
 
 Report to the user:
 - Which files were created or modified
-- That the app icon needs to be placed at `<slug>/icon.png` before the page will render correctly
+- Whether the icon was copied successfully, or (if not) that it must be placed manually at `<slug>/icon.png`
 - That the App Store URL in the hero button should be updated in `<slug>.html` once the app is live
-- Offer to run `/update-app-pages <slug>` immediately if the icon is already in place
 
 Then ask if the user wants to commit the changes.
