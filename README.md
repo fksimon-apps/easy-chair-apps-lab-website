@@ -59,16 +59,20 @@ The skill definition lives at `.claude/commands/update-app-pages.md`.
 
 #### Adding a new app
 
-1. Add a row to the source-to-page mapping table in `.claude/commands/update-app-pages.md`:
+Use the `/add-app` skill instead of doing this manually — see below.
 
-   ```markdown
-   | `~/Workspace/MyApp/MARKETING.md` | `myapp.html` |
-   ```
+### `/add-app`
 
-2. Create the initial `myapp.html` following the same structure as `scorepad.html` or `retirementplanner.html` — same `<header>`, `<footer>`, shared `styles.css`, and page-scoped CSS prefix (e.g. `ma-`).
+Scaffolds a complete new app page and home page card from a `MARKETING.md` source file in one step:
 
-3. Add the app icon at `myapp/icon.png`.
+```
+/add-app "My App" ~/Workspace/MyApp/MARKETING.md
+```
 
-4. Add a card for the app in `index.html` under the `app-grid` section.
+The skill will:
 
-5. Run `/update-app-pages myapp` to do the first content pass from the Markdown source.
+1. Create `myapp.html` — a full detail page modeled on the existing app pages, with all content derived from `MARKETING.md`
+2. Add an app card to `index.html`
+3. Register the new app in `.claude/commands/update-app-pages.md` so future `/update-app-pages` runs include it
+
+After running, place the app icon at `myapp/icon.png` and update the App Store URL in the hero once the app is live. The skill definition lives at `.claude/commands/add-app.md`.

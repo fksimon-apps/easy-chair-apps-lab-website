@@ -14,6 +14,8 @@ Rebuild app marketing pages from their source MARKETING.md files.
 - No argument: process all apps
 - App name (e.g. `retirementplanner` or `scorepad`): process only that app
 
+> To add a new app to this list, use the `/add-app` skill — it creates the detail page, updates `index.html`, and registers the mapping here automatically.
+
 ## Steps
 
 For each app being processed:
