@@ -43,24 +43,6 @@ Pushes to `main` deploy automatically via GitHub Pages. The custom domain is con
 
 ## Claude Code skills
 
-### `/update-app-pages`
-
-Rebuilds app marketing pages from their source `MARKETING.md` files. Run from the repo root in Claude Code:
-
-```
-/update-app-pages                  # rebuild all app pages
-/update-app-pages retirementplanner  # rebuild one page
-/update-app-pages scorepad
-```
-
-The skill reads each app's `MARKETING.md`, compares its content to the current HTML page, and does a full rebuild of any page where the content has changed. The site's CSS, layout, animations, and icons are preserved — only the text content, feature cards, and sections are updated from the Markdown source.
-
-The skill definition lives at `.claude/commands/update-app-pages.md`.
-
-#### Adding a new app
-
-Use the `/add-app` skill instead of doing this manually — see below.
-
 ### `/add-app`
 
 Scaffolds a complete new app page and home page card from a `MARKETING.md` source file in one step:
@@ -77,3 +59,17 @@ The skill will:
 4. Copy the app icon automatically — searches the source project for the Xcode `AppIcon.appiconset` (picking the largest PNG), falls back to any root-level icon file, and places it at `myapp/icon.png`
 
 The only manual step after running is updating the App Store URL in the hero once the app is live. The skill definition lives at `.claude/commands/add-app.md`.
+
+### `/update-app-pages`
+
+Rebuilds app marketing pages from their source `MARKETING.md` files. Run from the repo root in Claude Code:
+
+```
+/update-app-pages                  # rebuild all app pages
+/update-app-pages retirementplanner  # rebuild one page
+/update-app-pages scorepad
+```
+
+The skill reads each app's `MARKETING.md`, compares its content to the current HTML page, and does a full rebuild of any page where the content has changed. The site's CSS, layout, animations, and icons are preserved — only the text content, feature cards, and sections are updated from the Markdown source.
+
+The skill definition lives at `.claude/commands/update-app-pages.md`.
