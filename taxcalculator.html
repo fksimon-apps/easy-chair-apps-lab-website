@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TaxCalculator &mdash; Plan Roth conversions and quarterly tax. A this-year tax planner for self-managing retirees. iPhone &amp; iPad." />
+  <title>TaxCalculator | Easy Chair Apps Lab</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* =====================================================
+       TAXCALCULATOR PAGE
+       ===================================================== */
+
+    .tc-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Hero */
+    .tc-hero {
+      width: 100%;
+      text-align: center;
+      padding: 4rem 1.5rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tc-hero::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 720px;
+      height: 720px;
+      background: radial-gradient(
+        circle,
+        rgba(123, 63, 228, 0.18) 0%,
+        rgba(46, 197, 211, 0.08) 45%,
+        transparent 70%
+      );
+      filter: blur(70px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .tc-hero > * { position: relative; z-index: 1; }
+
+    .tc-app-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.1s;
+    }
+
+    .tc-app-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .tc-title {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 6vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -1px;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.2s;
+    }
+
+    .tc-tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+      color: var(--ink-soft);
+      margin-bottom: 0.4rem;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.3s;
+    }
+
+    .tc-sub-tagline {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 420px;
+      line-height: 1.6;
+      margin-bottom: 1.75rem;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.4s;
+    }
+
+    .tc-platform-badges {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.75rem;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.45s;
+    }
+
+    .tc-platform-badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      background: var(--border);
+      border-radius: 100px;
+      padding: 0.25rem 0.7rem;
+    }
+
+    .tc-store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--ink);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 13px;
+      padding: 0.7rem 1.4rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: opacity 200ms ease, transform 200ms ease;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.5s;
+    }
+
+    .tc-store-btn:hover {
+      opacity: 0.8;
+      transform: translateY(-1px);
+    }
+
+    .tc-store-btn svg {
+      flex-shrink: 0;
+    }
+
+    .tc-store-btn-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      line-height: 1.2;
+    }
+
+    .tc-store-btn-text small {
+      font-size: 0.7rem;
+      font-weight: 400;
+      opacity: 0.75;
+      letter-spacing: 0.02em;
+    }
+
+    .tc-store-btn-text strong {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .tc-coming-soon-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.75rem;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.6s;
+    }
+
+    /* Sections */
+    .tc-section {
+      width: 100%;
+      max-width: 800px;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .tc-section-title {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border);
+      position: relative;
+    }
+
+    .tc-section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 48px;
+      height: 2px;
+      background: var(--grad);
+    }
+
+    /* Feature cards */
+    .tc-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .tc-feature-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+
+    .tc-feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--grad);
+    }
+
+    .tc-feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-violet);
+    }
+
+    .tc-feature-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--grad);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-bottom: 0.2rem;
+    }
+
+    .tc-feature-icon svg {
+      color: #fff;
+    }
+
+    .tc-feature-card h3 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    .tc-feature-card p {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    /* Why section */
+    .tc-why-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .tc-why-item {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: box-shadow 200ms ease;
+    }
+
+    .tc-why-item:hover {
+      box-shadow: var(--shadow-violet);
+    }
+
+    .tc-why-num {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 1.6rem;
+      text-align: right;
+    }
+
+    .tc-why-item h3 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+
+    .tc-why-item p {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+    }
+
+    /* Privacy callout */
+    .tc-privacy {
+      background: linear-gradient(135deg, rgba(123, 63, 228, 0.06) 0%, rgba(46, 197, 211, 0.06) 100%);
+      border: 1px solid rgba(123, 63, 228, 0.15);
+      border-radius: 16px;
+      padding: 2rem 2.25rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .tc-privacy-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--grad);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tc-privacy h2 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .tc-privacy p {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    /* Disclaimer */
+    .tc-disclaimer {
+      width: 100%;
+      max-width: 800px;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .tc-disclaimer-box {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+    }
+
+    .tc-disclaimer-box svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--muted);
+    }
+
+    .tc-disclaimer-box p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* Tip jar */
+    .tc-tip {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      line-height: 1.7;
+    }
+
+    .tc-tip strong {
+      color: var(--ink);
+    }
+
+    /* Responsive */
+    @media (max-width: 720px) {
+      .tc-features {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .tc-features {
+        grid-template-columns: 1fr;
+      }
+
+      .tc-privacy {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="legal-header">
+    <a href="index.html">
+      <img src="logo.png" alt="Easy Chair Apps Lab" />
+    </a>
+  </header>
+
+  <main class="tc-main">
+
+    <!-- Hero -->
+    <section class="tc-hero">
+      <div class="tc-app-icon">
+        <img src="taxcalculator/icon.png" alt="TaxCalculator app icon" />
+      </div>
+      <h1 class="tc-title">TaxCalculator</h1>
+      <p class="tc-tagline">Plan Roth conversions and quarterly tax.</p>
+      <p class="tc-sub-tagline">A this-year tax planner for self-managing retirees.</p>
+      <div class="tc-platform-badges">
+        <span class="tc-platform-badge">iPhone</span>
+        <span class="tc-platform-badge">iPad</span>
+      </div>
+      <a href="#" class="tc-store-btn" aria-label="Download on the App Store">
+        <!-- Apple logo -->
+        <svg width="22" height="27" viewBox="0 0 814 1000" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.5-150.3-88.5l-10.2-12.8c-52.5-64.3-101.1-143.3-117.9-220.9-8.4-38.5-12.8-76.3-12.8-113.5 0-149.6 98.4-228.9 194.7-228.9 51.9 0 95.2 33.5 127.4 33.5 30.8 0 79.4-35.5 138.4-35.5 22.1 0 98.6 2 157.5 64.6zM547.3 79.6C571 50.6 588.5 10.1 588.5 0c0-2.5-.3-5.1-.6-7.7-.3-2.6 0 0 0 0-23.8 2.9-51.5 16.6-71.3 37.3C497.7 51.2 478 91.7 478 131.6c0 2.9.3 5.8.6 8.7 2.9.3 6.1.6 9.3.6 22.4 0 47.8-12.5 59.4-61.3z"/>
+        </svg>
+        <span class="tc-store-btn-text">
+          <small>Download on the</small>
+          <strong>App Store</strong>
+        </span>
+      </a>
+      <p class="tc-coming-soon-note">Coming soon &mdash; link active at launch</p>
+    </section>
+
+    <!-- Features -->
+    <section class="tc-section">
+      <h2 class="tc-section-title">Features</h2>
+      <div class="tc-features">
+
+        <div class="tc-feature-card">
+          <div class="tc-feature-icon">
+            <!-- Target/headroom icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+            </svg>
+          </div>
+          <h3>Live Headroom</h3>
+          <p>One hero number tells you how much more you can convert and stay inside your target bracket. Pick 12%, 22%, 24%, or 32% and the headline updates.</p>
+        </div>
+
+        <div class="tc-feature-card">
+          <div class="tc-feature-icon">
+            <!-- Trend/chart icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h3>Marginal-Rate Curve</h3>
+          <p>A chart of the tax on your next dollar against additional conversion. Bracket edges show as step-ups; SS-torpedo and OBBBA-phaseout regions show as bumps above the nominal rate.</p>
+        </div>
+
+        <div class="tc-feature-card">
+          <div class="tc-feature-icon">
+            <!-- Alert/cliff icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
+          <h3>Cliff Detection</h3>
+          <p>IRMAA tiers (with 2-year forward perspective), LTCG 0%/15% threshold, OBBBA senior-bonus phaseout end &mdash; each with distance in dollars and annual cost if crossed.</p>
+        </div>
+
+        <div class="tc-feature-card">
+          <div class="tc-feature-icon">
+            <!-- Progress bar icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="9" width="20" height="6" rx="2"/><rect x="2" y="9" width="12" height="6" rx="2" fill="white" stroke="none"/>
+            </svg>
+          </div>
+          <h3>Target / Paid / Left</h3>
+          <p>A progress bar tracks your quarterly estimated payments against the safe-harbor target (lesser of 90% of this year or 100%/110% of last year). Federal and state, per quarter.</p>
+        </div>
+
+        <div class="tc-feature-card">
+          <div class="tc-feature-icon">
+            <!-- Calculator/what-if icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="11" x2="10" y2="11"/><line x1="13" y1="11" x2="16" y2="11"/><line x1="8" y1="16" x2="10" y2="16"/><line x1="13" y1="16" x2="16" y2="16"/>
+            </svg>
+          </div>
+          <h3>Pay-as-you-Convert</h3>
+          <p>Enter a hypothetical conversion and see the additional federal tax to add to your next 1040-ES voucher. Or use the December-withholding suggestion to cure a whole-year shortfall at once.</p>
+        </div>
+
+        <div class="tc-feature-card">
+          <div class="tc-feature-icon">
+            <!-- Clock icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 16 14"/>
+            </svg>
+          </div>
+          <h3>Required Withdrawal (RMD)</h3>
+          <p>IRS Uniform Lifetime Table lookup with the SECURE 2.0 age-73 / age-75 split. Flags the double-RMD trap if you deferred your first RMD past April 1.</p>
+        </div>
+
+        <div class="tc-feature-card">
+          <div class="tc-feature-icon">
+            <!-- Globe/map icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <h3>State Tax, 50 + DC</h3>
+          <p>Full math for 22 no-income-tax and flat-rate states. Progressive states get an info card with the top marginal rate and retirement-income treatment &mdash; honest, not approximated.</p>
+        </div>
+
+        <div class="tc-feature-card">
+          <div class="tc-feature-icon">
+            <!-- Document icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/>
+            </svg>
+          </div>
+          <h3>Printable PDF Report</h3>
+          <p>Three pages modeled on a CPA tax-planning analysis: income summary, federal + state calculation, headroom analysis &mdash; with source citations on every constant.</p>
+        </div>
+
+        <div class="tc-feature-card">
+          <div class="tc-feature-icon">
+            <!-- Download/export icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+          </div>
+          <h3>JSON Export &amp; Import</h3>
+          <p>Export your household profile as a plain-JSON file to share with your tax preparer or move to a new device. Schema-versioned envelope, ready for next year's import.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Why TaxCalculator -->
+    <section class="tc-section">
+      <h2 class="tc-section-title">Why TaxCalculator?</h2>
+      <div class="tc-why-list">
+
+        <div class="tc-why-item">
+          <span class="tc-why-num">1</span>
+          <div>
+            <h3>Built for the this-year horizon</h3>
+            <p>Long-term planners answer &ldquo;what&rsquo;s my retirement plan?&rdquo; TaxCalculator answers &ldquo;what do I do this calendar year, and by when?&rdquo;</p>
+          </div>
+        </div>
+
+        <div class="tc-why-item">
+          <span class="tc-why-num">2</span>
+          <div>
+            <h3>Engines, not approximations</h3>
+            <p>Cap-gains stacking, SS-torpedo, OBBBA phaseout, IRMAA cliffs, RMD basis &mdash; all modeled, not estimated.</p>
+          </div>
+        </div>
+
+        <div class="tc-why-item">
+          <span class="tc-why-num">3</span>
+          <div>
+            <h3>Per-state treatment, honestly</h3>
+            <p>Flat-tax states get the exact computation. Progressive states get the top rate and exemption flags with a &ldquo;consult your preparer&rdquo; note &mdash; not a misleading approximation.</p>
+          </div>
+        </div>
+
+        <div class="tc-why-item">
+          <span class="tc-why-num">4</span>
+          <div>
+            <h3>No assumptions about your tax preparer</h3>
+            <p>Export your profile as JSON and email it to your CPA. Import it back next year. Your data, your workflow.</p>
+          </div>
+        </div>
+
+        <div class="tc-why-item">
+          <span class="tc-why-num">5</span>
+          <div>
+            <h3>Completely on-device</h3>
+            <p>No account, no analytics, no network calls. Your tax data never leaves your phone.</p>
+          </div>
+        </div>
+
+        <div class="tc-why-item">
+          <span class="tc-why-num">6</span>
+          <div>
+            <h3>All five filing statuses, all 50 states</h3>
+            <p>MFJ, QSS, Single, HoH, MFS. Every state plus DC has at least an info card; 22 have full computation.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Privacy callout -->
+    <section class="tc-section">
+      <div class="tc-privacy">
+        <div class="tc-privacy-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h2>No account. No tracking. Your tax data stays on your phone.</h2>
+        <p>100% on-device. No sign-in, no analytics SDK, no telemetry. The only network path is Apple StoreKit if you choose to tip. Your household profile saves to a plain JSON file in the app&rsquo;s Documents directory.</p>
+      </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <div class="tc-disclaimer">
+      <div class="tc-disclaimer-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        <p><strong>Not tax advice.</strong> TaxCalculator is an estimator. It is not tax advice. Confirm any decision with a CPA, EA, or qualified tax preparer before acting on it. Supports all five filing statuses (MFJ, QSS, Single, HoH, MFS) and the 2026 tax year.</p>
+      </div>
+    </div>
+
+    <!-- Tip jar -->
+    <div class="tc-tip">
+      <strong>TaxCalculator is free.</strong> If it saved you a tax bill, a small tip keeps it going.
+    </div>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Easy Chair Apps Lab, LLC. All rights reserved.</p>
+    <p style="margin-top:0.5rem;">
+      <a href="index.html">Home</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="support.html">Support</a>
+    </p>
+  </footer>
+
+</body>
+</html>

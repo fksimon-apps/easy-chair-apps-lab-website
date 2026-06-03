@@ -9,6 +9,7 @@ Rebuild app marketing pages from their source MARKETING.md files.
 | `~/Workspace/RetirementPlanner/MARKETING.md` | `retirementplanner.html` |
 | `~/Workspace/ScorePad/MARKETING.md` | `scorepad.html` |
 | `~/Workspace/HourlyTimeTracker/MARKETING.md` | `hourlytimetracker.html` |
+| `~/Workspace/TaxCalculator/MARKETING.md` | `taxcalculator.html` |
 
 ## Arguments
 
