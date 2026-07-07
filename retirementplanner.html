@@ -200,6 +200,14 @@
       background: var(--grad);
     }
 
+    .rp-section-intro {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      line-height: 1.7;
+      max-width: 680px;
+      margin-bottom: 1.5rem;
+    }
+
     /* Feature cards */
     .rp-features {
       display: grid;
@@ -634,7 +642,7 @@
             </svg>
           </div>
           <h3>Monte Carlo Risk Analysis</h3>
-          <p>Historical simulation using 97 years of actual S&amp;P 500 returns (1928&ndash;2024) plus configurable parametric simulation. Reports success rate, median ending balance, and sequence-of-returns risk.</p>
+          <p>Historical simulation using 98 years of actual S&amp;P 500 returns (1928&ndash;2025) plus configurable parametric simulation. Reports success rate, median ending balance, and sequence-of-returns risk.</p>
         </div>
 
         <div class="rp-feature-card">
@@ -686,7 +694,7 @@
             <li>Drill into full reports for any permutation result</li>
             <li>Save permutation results as named strategies</li>
             <li>Export full projection PDF report with charts and table of contents</li>
-            <li>Export CSV from any report page &mdash; Income, Expenses, Withdrawals, Net Worth, Taxes, Investments, Projections, and Permutation Results</li>
+            <li>Export CSV from any report page &mdash; Income, Expenses, Withdrawals, Net Worth, Investments, Projections, Social Security, Permutation Results, and &mdash; from the Taxes page &mdash; Tax Detail, MAGI Detail, and Capital Gains breakdowns</li>
             <li>Export Personal Data as JSON</li>
             <li>Export Plan Strategy (config) as JSON</li>
             <li>Import Personal Data from JSON</li>
@@ -730,8 +738,8 @@
         <div class="rp-why-item">
           <span class="rp-why-num">4</span>
           <div>
-            <h3>97 years of real market data</h3>
-            <p>Monte Carlo historical simulation uses actual S&amp;P 500 annual returns from 1928 to 2024, not synthetic distributions. Parametric mode lets you configure your own assumptions.</p>
+            <h3>98 years of real market data</h3>
+            <p>Monte Carlo historical simulation uses actual S&amp;P 500 annual returns from 1928 to 2025, not synthetic distributions. Parametric mode lets you configure your own assumptions.</p>
           </div>
         </div>
 
@@ -741,6 +749,134 @@
             <h3>Native on iPhone, iPad, and Mac</h3>
             <p>Built with SwiftUI. Runs natively on iPhone and iPad, and on Apple Silicon Macs as a Designed for iPad app. The same plan files and calculations, wherever you are.</p>
           </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Educational Use & Learning Aids -->
+    <section class="rp-section">
+      <h2 class="rp-section-title">Built to Teach, Not Just Calculate</h2>
+      <p class="rp-section-intro">Retirement finance is full of jargon and non-obvious tax mechanics. Retirement Planner explains them in plain language, right where the numbers appear, so you learn the &ldquo;why&rdquo; behind every result &mdash; a strong fit for DIY planners, anyone preparing for a meeting with a financial advisor, and students of personal finance or tax.</p>
+      <div class="rp-features">
+
+        <div class="rp-feature-card">
+          <div class="rp-feature-icon">
+            <!-- Book icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+          </div>
+          <h3>Built-in Glossary (100+ terms)</h3>
+          <p>A plain-language definition for every piece of jargon &mdash; MAGI, IRMAA, NIIT, RMD, cost basis, qualified dividends, provisional income, sequence-of-returns risk, and more &mdash; reachable from info buttons throughout the app.</p>
+        </div>
+
+        <div class="rp-feature-card">
+          <div class="rp-feature-icon">
+            <!-- Guide/help icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
+          <h3>Guided Tutorials on Every Screen</h3>
+          <p>Each report page and editor has its own walkthrough: what the page shows, how to read each column, tips for acting on it, and warnings about common mistakes &mdash; plus conceptual overviews of hard topics like how MAGI drives IRMAA and NIIT.</p>
+        </div>
+
+        <div class="rp-feature-card">
+          <div class="rp-feature-icon">
+            <!-- Table icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="12" y1="3" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <h3>Tables That Show Their Work</h3>
+          <p>Instead of a single mystery number, reports break results into their parts. The Capital Gains Detail table shows <em>Investment Sold</em> next to <em>Realized Gain</em> so you can see the cost-basis math; the MAGI Detail table lists every income component that sums to MAGI.</p>
+        </div>
+
+        <div class="rp-feature-card">
+          <div class="rp-feature-icon">
+            <!-- Database icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+            </svg>
+          </div>
+          <h3>Reference Data Browser</h3>
+          <p>View the actual IRS tax brackets, capital-gains rates, IRMAA thresholds, RMD Uniform Lifetime Table, Social Security adjustment factors, and state tax rates &mdash; the real source numbers behind the projections, not a black box.</p>
+        </div>
+
+        <div class="rp-feature-card">
+          <div class="rp-feature-icon">
+            <!-- Clipboard-check icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 2h6a1 1 0 0 1 1 1v2H8V3a1 1 0 0 1 1-1z"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"/><polyline points="9 14 11 16 15 12"/>
+            </svg>
+          </div>
+          <h3>Clear, Stated Assumptions</h3>
+          <p>Modeling choices are spelled out &mdash; all dividends treated as qualified, a default 50% cost basis you can override per account, standard deduction only &mdash; so you understand exactly what the projection does and does not model.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- For Young Investors -->
+    <section class="rp-section">
+      <h2 class="rp-section-title">For Young Investors</h2>
+      <p class="rp-section-intro">Although the app targets retirement, its projection engine models <em>decades</em> of compounding and taxes &mdash; which makes it a surprisingly good tool for younger savers who want to understand how today&rsquo;s choices play out over a lifetime. It answers the question most budgeting apps never touch: <em>why does it matter where I save, and what will it cost me later?</em></p>
+      <div class="rp-features">
+
+        <div class="rp-feature-card">
+          <div class="rp-feature-icon">
+            <!-- Trending up icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+            </svg>
+          </div>
+          <h3>See How Money Grows</h3>
+          <p>Model contributions plus market growth across 30&ndash;40 years and watch a modest monthly amount compound into a retirement number &mdash; with historical S&amp;P 500 return data (1928&ndash;2025) and Monte Carlo analysis showing the range of outcomes, not just a single line.</p>
+        </div>
+
+        <div class="rp-feature-card">
+          <div class="rp-feature-icon">
+            <!-- Scale/balance icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="12" y1="3" x2="12" y2="21"/><path d="M4 7h16"/><path d="M7 7l-3 6a3 3 0 0 0 6 0z"/><path d="M17 7l-3 6a3 3 0 0 0 6 0z"/><path d="M7 21h10"/>
+            </svg>
+          </div>
+          <h3>Understand the Tax Trade-offs Early</h3>
+          <p>Compare saving in a Traditional account (deduct now, taxed later &mdash; including RMDs and possible IRMAA surcharges) versus a Roth (pay tax now, grow and withdraw tax-free) and see the difference decades out, in real dollars.</p>
+        </div>
+
+        <div class="rp-feature-card">
+          <div class="rp-feature-icon">
+            <!-- Wallet icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/>
+            </svg>
+          </div>
+          <h3>Learn What Each Account Costs You Later</h3>
+          <p>The app makes the downstream tax picture concrete: Traditional means ordinary income plus required withdrawals; Roth is tax-free; a taxable brokerage brings capital gains, qualified dividends, and cost-basis mechanics.</p>
+        </div>
+
+        <div class="rp-feature-card">
+          <div class="rp-feature-icon">
+            <!-- Pie chart icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/>
+            </svg>
+          </div>
+          <h3>The Case for Tax Diversification</h3>
+          <p>By modeling Traditional, Roth, and taxable buckets together, a young saver can see why having all three &mdash; and starting a taxable or Roth balance early &mdash; gives far more flexibility to control taxes in retirement.</p>
+        </div>
+
+        <div class="rp-feature-card">
+          <div class="rp-feature-icon">
+            <!-- Check circle icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h3>Contribution Rules Built In</h3>
+          <p>SECURE Act 2.0 contribution and catch-up limits are modeled, so the &ldquo;how much can I put in&rdquo; question is answered as you plan.</p>
         </div>
 
       </div>
