@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="ScorePad — Score fast. Play more. The minimal scorekeeping app for any tabletop or card game. iOS &amp; iPadOS." />
+  <meta name="description" content="ScorePad — Score fast. Play more. A fast, private score tracker for any game: solo, co-op, or team. Round grids or quick +/- scoring. iOS &amp; iPadOS." />
   <title>ScorePad | Easy Chair Apps Lab</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
@@ -401,6 +401,17 @@
 
         <div class="sp-feature-card">
           <div class="sp-feature-icon">
+            <!-- Award/trophy icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11"/>
+            </svg>
+          </div>
+          <h3>Three Game Types</h3>
+          <p>Play <strong>Individual</strong> (classic player-vs-player), <strong>Cooperative</strong> (everyone against the game, with a shared Won or Lost), or <strong>Team</strong> (split players into teams and score team-vs-team). ScorePad remembers each game's usual type.</p>
+        </div>
+
+        <div class="sp-feature-card">
+          <div class="sp-feature-icon">
             <!-- Grid icon -->
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
@@ -408,6 +419,39 @@
           </div>
           <h3>Two Scoring Modes</h3>
           <p>Round-by-round grid entry for structured games like Catan or Hearts, or quick +/- steppers for running totals like darts or bowling. Optional starting score lets you set a non-zero base per player.</p>
+        </div>
+
+        <div class="sp-feature-card">
+          <div class="sp-feature-icon">
+            <!-- Users (cooperative) icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3>Cooperative Games</h3>
+          <p>For co-op titles like The Crew, tap <strong>Won</strong> or <strong>Lost</strong> at the end. Name the scenario or mission you played &mdash; type-ahead suggests ones you've done before &mdash; and a quick <strong>Play Again</strong> makes retries effortless.</p>
+        </div>
+
+        <div class="sp-feature-card">
+          <div class="sp-feature-icon">
+            <!-- Flag (teams) icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>
+            </svg>
+          </div>
+          <h3>Teams Made Easy</h3>
+          <p>Pick the number of teams, then add each player straight into theirs. Team rosters are remembered between games, and &ldquo;Alex &amp; Sam&rdquo; and &ldquo;Sam &amp; Alex&rdquo; count as the same team.</p>
+        </div>
+
+        <div class="sp-feature-card">
+          <div class="sp-feature-icon">
+            <!-- Pause icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"/><line x1="10" y1="9" x2="10" y2="15"/><line x1="14" y1="9" x2="14" y2="15"/>
+            </svg>
+          </div>
+          <h3>Pause &amp; Resume</h3>
+          <p>Step away without ending a game and start another &mdash; keep several running at once. Paused games wait at the top of History, ready to resume; give each a label to tell them apart.</p>
         </div>
 
         <div class="sp-feature-card">
@@ -429,7 +473,7 @@
             </svg>
           </div>
           <h3>Full History</h3>
-          <p>Every session is saved automatically. Tap any past game to review the complete scoresheet with all rounds.</p>
+          <p>Every session is saved automatically, with paused <strong>In Progress</strong> games at the top. Browse by date or by game, search by player, and filter cooperative games by Won or Lost. Tap any session for the full scoresheet.</p>
         </div>
 
         <div class="sp-feature-card">
@@ -440,7 +484,7 @@
             </svg>
           </div>
           <h3>Stats</h3>
-          <p>Games-per-month bar chart filterable by year and month, top games and players by play count, and a most-recent sessions list &mdash; all without leaving the app.</p>
+          <p><strong>General</strong>, <strong>Team</strong>, and <strong>Compare</strong> views: a games-per-month bar chart filterable by year and month, top games and players, each team's wins and losses, and head-to-head records between any two players.</p>
         </div>
 
         <div class="sp-feature-card">
@@ -461,8 +505,8 @@
               <circle cx="12" cy="7" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
             </svg>
           </div>
-          <h3>Player Profiles</h3>
-          <p>Persistent player profiles with full play history. The same name resolves to the same player every time.</p>
+          <h3>Players &amp; Teams</h3>
+          <p>Persistent player profiles with full play history. Switch to <strong>Teams</strong> to see the groups you've played in, with game counts. The same name resolves to the same player every time.</p>
         </div>
 
         <div class="sp-feature-card">
@@ -514,13 +558,21 @@
         <div class="sp-why-item">
           <span class="sp-why-num">3</span>
           <div>
-            <h3>Remembers everything, asks nothing</h3>
-            <p>Game names, player names, round counts &mdash; all reused automatically on the next play.</p>
+            <h3>Solo, co-op, and team &mdash; not just head-to-head</h3>
+            <p>Beyond individual scoring, ScorePad tracks a shared Won/Lost for cooperative games (with named missions, like The Crew) and full team-vs-team records with head-to-head matchups. Any group's game night fits.</p>
           </div>
         </div>
 
         <div class="sp-why-item">
           <span class="sp-why-num">4</span>
+          <div>
+            <h3>Remembers everything, asks nothing</h3>
+            <p>Game names, player names, round counts, and team rosters &mdash; all reused automatically on the next play.</p>
+          </div>
+        </div>
+
+        <div class="sp-why-item">
+          <span class="sp-why-num">5</span>
           <div>
             <h3>Completely private</h3>
             <p>No analytics SDK, no network requests, no account. All data lives on-device with SwiftData. The privacy manifest confirms zero data collection.</p>
@@ -528,7 +580,7 @@
         </div>
 
         <div class="sp-why-item">
-          <span class="sp-why-num">5</span>
+          <span class="sp-why-num">6</span>
           <div>
             <h3>Any game, any group</h3>
             <p>Card games, board games, dice games, darts, bowling, mini-golf &mdash; anything with players and scores.</p>
@@ -536,7 +588,7 @@
         </div>
 
         <div class="sp-why-item">
-          <span class="sp-why-num">6</span>
+          <span class="sp-why-num">7</span>
           <div>
             <h3>Available in four languages</h3>
             <p>Full UI in English, French, German, and Spanish &mdash; the app automatically matches the device language.</p>
