@@ -188,6 +188,63 @@ body {
 }
 
 /* =====================================================
+   WHAT'S NEW
+   ===================================================== */
+.whats-new {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 780px;
+  margin-top: 2.5rem;
+}
+
+.whats-new-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.update-link {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: #fff;
+  border-radius: 100px;
+  padding: 0.6rem 1rem 0.6rem 0.6rem;
+  box-shadow: var(--shadow-soft);
+  text-decoration: none;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.update-link:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-violet);
+}
+
+.update-badge {
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #fff;
+  background: var(--grad);
+  border-radius: 100px;
+  padding: 0.25rem 0.7rem;
+}
+
+.update-text {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.update-text strong {
+  color: var(--ink);
+}
+
+/* =====================================================
    APPS SHOWCASE
    ===================================================== */
 .apps {

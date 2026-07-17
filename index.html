@@ -21,6 +21,17 @@
       <p class="tagline">Thoughtful apps for everyday life.</p>
     </section>
 
+    <section class="whats-new" aria-label="Latest updates">
+      <ul class="whats-new-list">
+        <li class="update" data-date="2026-07-16">
+          <a href="scorepad.html" class="update-link">
+            <span class="update-badge">New</span>
+            <span class="update-text"><strong>ScorePad 1.2.0</strong> &mdash; cooperative &amp; team games, scenario tracking, and head-to-head stats.</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
     <section class="apps">
       <h2>Our Apps</h2>
       <div class="app-grid">
@@ -84,6 +95,26 @@
       <a href="support.html">Support</a>
     </p>
   </footer>
+
+  <script>
+    (function () {
+      var MAX_AGE_DAYS = 30;
+      var section = document.querySelector('.whats-new');
+      if (!section) return;
+      var now = Date.now();
+      var visible = 0;
+      section.querySelectorAll('.update[data-date]').forEach(function (item) {
+        var when = new Date(item.getAttribute('data-date')).getTime();
+        var ageDays = (now - when) / 86400000;
+        if (isNaN(ageDays) || ageDays > MAX_AGE_DAYS) {
+          item.hidden = true;
+        } else {
+          visible++;
+        }
+      });
+      if (visible === 0) section.hidden = true;
+    })();
+  </script>
 
 </body>
 </html>
