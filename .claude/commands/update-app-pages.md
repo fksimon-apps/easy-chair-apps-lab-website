@@ -107,6 +107,9 @@ For the app being processed:
    `data-version` to the current version and add **no** news entry — this only establishes a baseline.
 3. **If `data-version` differs from the current version**, a version change occurred:
    - Update the card's `data-version` to the current version.
+   - **Remove any existing news entry for this same app** (any `<li class="update">` whose link points
+     to this app's `<slug>.html`). An app should appear in the list at most once — the newest version
+     replaces the old entry rather than stacking beside it.
    - Insert a new entry at the **top** of `<ul class="whats-new-list">` (newest first), using today's
      date (`date +%F`) as `data-date`:
 
