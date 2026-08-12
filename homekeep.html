@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="HomeKeep &mdash; Every detail of your home, in your pocket. Keep paint codes, filter sizes, model numbers, and warranties by room. Photo scan fills the fields. Large-type Store View works offline. iOS &amp; iPadOS." />
+  <title>HomeKeep | Easy Chair Apps Lab</title>
+  <link rel="stylesheet" href="styles.css?v=2" />
+  <style>
+    /* =====================================================
+       HOMEKEEP PAGE
+       ===================================================== */
+
+    .hk-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Hero */
+    .hk-hero {
+      width: 100%;
+      text-align: center;
+      padding: 4rem 1.5rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hk-hero::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 720px;
+      height: 720px;
+      background: radial-gradient(
+        circle,
+        rgba(123, 63, 228, 0.18) 0%,
+        rgba(46, 197, 211, 0.08) 45%,
+        transparent 70%
+      );
+      filter: blur(70px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hk-hero > * { position: relative; z-index: 1; }
+
+    .hk-app-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.1s;
+    }
+
+    .hk-app-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hk-title {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 6vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -1px;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.2s;
+    }
+
+    .hk-tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+      color: var(--ink-soft);
+      margin-bottom: 0.4rem;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.3s;
+    }
+
+    .hk-sub-tagline {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 380px;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.4s;
+    }
+
+    .hk-platform-badges {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.75rem;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.45s;
+    }
+
+    .hk-platform-badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      background: var(--border);
+      border-radius: 100px;
+      padding: 0.25rem 0.7rem;
+    }
+
+    .hk-store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--ink);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 13px;
+      padding: 0.7rem 1.4rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: opacity 200ms ease, transform 200ms ease;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.5s;
+    }
+
+    .hk-store-btn:hover {
+      opacity: 0.8;
+      transform: translateY(-1px);
+    }
+
+    .hk-store-btn svg {
+      flex-shrink: 0;
+    }
+
+    .hk-store-btn-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      line-height: 1.2;
+    }
+
+    .hk-store-btn-text small {
+      font-size: 0.7rem;
+      font-weight: 400;
+      opacity: 0.75;
+      letter-spacing: 0.02em;
+    }
+
+    .hk-store-btn-text strong {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .hk-coming-soon-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.75rem;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.6s;
+    }
+
+    /* Sections */
+    .hk-section {
+      width: 100%;
+      max-width: 800px;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .hk-section-title {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border);
+      position: relative;
+    }
+
+    .hk-section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 48px;
+      height: 2px;
+      background: var(--grad);
+    }
+
+    /* Feature cards */
+    .hk-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .hk-feature-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+
+    .hk-feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--grad);
+    }
+
+    .hk-feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-violet);
+    }
+
+    .hk-feature-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--grad);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-bottom: 0.2rem;
+    }
+
+    .hk-feature-icon svg {
+      color: #fff;
+    }
+
+    .hk-feature-card h3 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    .hk-feature-card p {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    /* Why section */
+    .hk-why-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .hk-why-item {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: box-shadow 200ms ease;
+    }
+
+    .hk-why-item:hover {
+      box-shadow: var(--shadow-violet);
+    }
+
+    .hk-why-num {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 1.6rem;
+      text-align: right;
+    }
+
+    .hk-why-item h3 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+
+    .hk-why-item p {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+    }
+
+    /* Privacy callout */
+    .hk-privacy {
+      background: linear-gradient(135deg, rgba(123, 63, 228, 0.06) 0%, rgba(46, 197, 211, 0.06) 100%);
+      border: 1px solid rgba(123, 63, 228, 0.15);
+      border-radius: 16px;
+      padding: 2rem 2.25rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hk-privacy-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--grad);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hk-privacy h2 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .hk-privacy p {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      max-width: 460px;
+      line-height: 1.7;
+    }
+
+    /* Tip jar */
+    .hk-tip {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      line-height: 1.7;
+    }
+
+    .hk-tip strong {
+      color: var(--ink);
+    }
+
+    /* Responsive */
+    @media (max-width: 720px) {
+      .hk-features {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hk-features {
+        grid-template-columns: 1fr;
+      }
+
+      .hk-privacy {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="legal-header">
+    <a href="index.html">
+      <img src="logo.png" alt="Easy Chair Apps Lab" />
+    </a>
+  </header>
+
+  <main class="hk-main">
+
+    <!-- Hero -->
+    <section class="hk-hero">
+      <div class="hk-app-icon">
+        <img src="homekeep/icon.png" alt="HomeKeep app icon" />
+      </div>
+      <h1 class="hk-title">HomeKeep</h1>
+      <p class="hk-tagline">Every detail of your home, in your pocket.</p>
+      <p class="hk-sub-tagline">Snap it once. Find it in the store aisle, offline, in two taps.</p>
+      <div class="hk-platform-badges">
+        <span class="hk-platform-badge">iPhone</span>
+        <span class="hk-platform-badge">iPad</span>
+      </div>
+      <a href="#" class="hk-store-btn" aria-label="Download on the App Store">
+        <!-- Apple logo -->
+        <svg width="22" height="27" viewBox="0 0 814 1000" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.5-150.3-88.5l-10.2-12.8c-52.5-64.3-101.1-143.3-117.9-220.9-8.4-38.5-12.8-76.3-12.8-113.5 0-149.6 98.4-228.9 194.7-228.9 51.9 0 95.2 33.5 127.4 33.5 30.8 0 79.4-35.5 138.4-35.5 22.1 0 98.6 2 157.5 64.6zM547.3 79.6C571 50.6 588.5 10.1 588.5 0c0-2.5-.3-5.1-.6-7.7-.3-2.6 0 0 0 0-23.8 2.9-51.5 16.6-71.3 37.3C497.7 51.2 478 91.7 478 131.6c0 2.9.3 5.8.6 8.7 2.9.3 6.1.6 9.3.6 22.4 0 47.8-12.5 59.4-61.3z"/>
+        </svg>
+        <span class="hk-store-btn-text">
+          <small>Download on the</small>
+          <strong>App Store</strong>
+        </span>
+      </a>
+      <p class="hk-coming-soon-note">Coming soon</p>
+    </section>
+
+    <!-- Features -->
+    <section class="hk-section">
+      <h2 class="hk-section-title">Features</h2>
+      <div class="hk-features">
+
+        <div class="hk-feature-card">
+          <div class="hk-feature-icon">
+            <!-- Home icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-7h6v7"/>
+            </svg>
+          </div>
+          <h3>Rooms &amp; Areas</h3>
+          <p>Organize everything by space &mdash; Living Room, Garage, Primary Bath, Exterior &mdash; or file it under the whole home. Pick from a built-in catalog of common rooms or type your own.</p>
+        </div>
+
+        <div class="hk-feature-card">
+          <div class="hk-feature-icon">
+            <!-- Layers (multiple properties) icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m12 2 9 5-9 5-9-5z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/>
+            </svg>
+          </div>
+          <h3>Multiple Properties</h3>
+          <p>A second home, a rental, or a parent&rsquo;s house &mdash; each with its own rooms, items, and contacts, kept separate but always a tap away.</p>
+        </div>
+
+        <div class="hk-feature-card">
+          <div class="hk-feature-icon">
+            <!-- Search icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+          </div>
+          <h3>Search Everything</h3>
+          <p>One field at the top searches every room, item type, brand, code, model, and serial across the whole home. Names write themselves, too &mdash; HomeKeep derives &ldquo;Kitchen HVAC Filter&rdquo; from what you entered.</p>
+        </div>
+
+        <div class="hk-feature-card">
+          <div class="hk-feature-icon">
+            <!-- Camera icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>
+            </svg>
+          </div>
+          <h3>Scan to Fill</h3>
+          <p>Photograph a paint can lid, a filter edge, or a model and serial plate. HomeKeep reads the text on-device with Apple&rsquo;s Vision framework and offers the fields it recognized. No image ever leaves your iPhone.</p>
+        </div>
+
+        <div class="hk-feature-card">
+          <div class="hk-feature-icon">
+            <!-- Check circle icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/>
+            </svg>
+          </div>
+          <h3>You Always Confirm</h3>
+          <p>Apply all, some, or none of the detected fields. Typing by hand is always available and never blocked by a bad scan &mdash; and the label photo is kept with the item even when nothing is recognized.</p>
+        </div>
+
+        <div class="hk-feature-card">
+          <div class="hk-feature-icon">
+            <!-- List icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
+            </svg>
+          </div>
+          <h3>Ten Kinds of Record</h3>
+          <p>Paint, filters, bulbs, appliances, batteries, caulk and sealant, finishes, insurance, utilities &mdash; each with the fields it actually needs &mdash; plus a free-form record for anything else.</p>
+        </div>
+
+        <div class="hk-feature-card">
+          <div class="hk-feature-icon">
+            <!-- Maximize (large type) icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/>
+            </svg>
+          </div>
+          <h3>Store View</h3>
+          <p>A stripped-down screen showing the fields that identify the item, biggest first: color code, filter size, bulb base, model number. Readable at arm&rsquo;s length, and it opens instantly with no signal.</p>
+        </div>
+
+        <div class="hk-feature-card">
+          <div class="hk-feature-icon">
+            <!-- Bell icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+          </div>
+          <h3>Reminders That Suggest Themselves</h3>
+          <p>Enter a filter interval and HomeKeep proposes the next change date; enter a warranty expiration and it proposes a reminder before it lapses. Notifications fire locally, with no server involved.</p>
+        </div>
+
+        <div class="hk-feature-card">
+          <div class="hk-feature-icon">
+            <!-- Calendar icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <h3>One Due List</h3>
+          <p>Every reminder across the home in a single list, soonest first, with overdue items called out. Note how often something recurs and the next one is easy to set.</p>
+        </div>
+
+        <div class="hk-feature-card">
+          <div class="hk-feature-icon">
+            <!-- File/document icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>
+            </svg>
+          </div>
+          <h3>Manuals &amp; Receipts</h3>
+          <p>Attach photos and PDFs to any item &mdash; manuals, receipts, before-and-after shots, the warranty card &mdash; and read them full-screen in the app. Stored as real files, so backups stay clean and portable.</p>
+        </div>
+
+        <div class="hk-feature-card">
+          <div class="hk-feature-icon">
+            <!-- Users icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3>Contacts &amp; Service Log</h3>
+          <p>Plumber, electrician, HVAC tech, HOA, landscaper &mdash; with trade, phone, email, and notes. Link them to items and rooms, and keep a log of each visit: the date, what was done, and what it cost.</p>
+        </div>
+
+        <div class="hk-feature-card">
+          <div class="hk-feature-icon">
+            <!-- Download/backup icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+          </div>
+          <h3>Backup &amp; Export</h3>
+          <p>One file with every item, photo, and document, saved wherever you want it &mdash; and restored onto a new device just as easily. A plain CSV export covers anything HomeKeep doesn&rsquo;t do.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Why HomeKeep -->
+    <section class="hk-section">
+      <h2 class="hk-section-title">Why HomeKeep?</h2>
+      <div class="hk-why-list">
+
+        <div class="hk-why-item">
+          <span class="hk-why-num">1</span>
+          <div>
+            <h3>Built for the moment you&rsquo;re standing in the aisle</h3>
+            <p>Store View is a deliberate screen, not an afterthought: the identifying fields in large type, readable at arm&rsquo;s length, working with zero bars of signal.</p>
+          </div>
+        </div>
+
+        <div class="hk-why-item">
+          <span class="hk-why-num">2</span>
+          <div>
+            <h3>The camera does the typing</h3>
+            <p>Photograph a paint lid or a model plate and HomeKeep reads it on-device and offers the fields. Thirty seconds of capture saves a wasted trip months later.</p>
+          </div>
+        </div>
+
+        <div class="hk-why-item">
+          <span class="hk-why-num">3</span>
+          <div>
+            <h3>Typed records, not a notes app</h3>
+            <p>Paint has a finish and a surface. Filters have a MERV rating. Appliances have a serial and a warranty date. Ten kinds of record know what they need, so nothing important gets left out &mdash; with a free-form type for whatever&rsquo;s left.</p>
+          </div>
+        </div>
+
+        <div class="hk-why-item">
+          <span class="hk-why-num">4</span>
+          <div>
+            <h3>Reminders that come from the data</h3>
+            <p>Enter a filter interval and HomeKeep suggests the next due date. Enter a warranty expiration and it suggests a reminder before it lapses. No separate scheduling chore.</p>
+          </div>
+        </div>
+
+        <div class="hk-why-item">
+          <span class="hk-why-num">5</span>
+          <div>
+            <h3>Genuinely private, genuinely offline</h3>
+            <p>No account to create, no network required, nothing collected. iCloud sync is opt-in and uses your own private database.</p>
+          </div>
+        </div>
+
+        <div class="hk-why-item">
+          <span class="hk-why-num">6</span>
+          <div>
+            <h3>Your data stays yours</h3>
+            <p>A full backup &mdash; every item, photo, and PDF in one file &mdash; plus a CSV export, always available with no upsell.</p>
+          </div>
+        </div>
+
+        <div class="hk-why-item">
+          <span class="hk-why-num">7</span>
+          <div>
+            <h3>The whole house, including the people</h3>
+            <p>Rooms, items, documents, reminders, and the contractors who service them, in one place, across more than one property.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Privacy callout -->
+    <section class="hk-section">
+      <div class="hk-privacy">
+        <div class="hk-privacy-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h2>No account. No ads. No tracking.</h2>
+        <p>Your home stays on your device. There is no sign-in, no analytics SDK, and nothing collected &mdash; the App Store privacy label says so. Turn on iCloud sync and your data moves through your own private iCloud account; leave it off and the app is complete on one device.</p>
+      </div>
+    </section>
+
+    <!-- Tip jar -->
+    <div class="hk-tip">
+      <strong>HomeKeep is free, with every feature unlocked.</strong> If it saves you a trip to the store, the tip jar is open.
+    </div>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Easy Chair Apps Lab, LLC. All rights reserved.</p>
+    <p style="margin-top:0.5rem;">
+      <a href="index.html">Home</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="support.html">Support</a>
+    </p>
+  </footer>
+
+</body>
+</html>
