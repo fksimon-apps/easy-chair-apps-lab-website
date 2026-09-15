@@ -11,6 +11,7 @@ Rebuild app marketing pages from their source MARKETING.md files.
 | `~/Workspace/HourlyTimeTracker/MARKETING.md` | `hourlytimetracker.html` |
 | `~/Workspace/TaxCalculator/MARKETING.md` | `taxcalculator.html` |
 | `~/Workspace/HomeKeep/MARKETING.md` | `homekeep.html` |
+| `~/Workspace/GlycemicLoadTracker/MARKETING.md` | `glycemicloadtracker.html` |
 
 ## Arguments
 

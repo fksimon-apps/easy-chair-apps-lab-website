@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Glycemic Load Tracker — Know the number before you eat it. Log a food in two taps and the app does the glycemic math: built-in glycemic index table, label scanning, daily goal gauge, and weekly reports. iPhone &amp; iPad." />
+  <title>Glycemic Load Tracker | Easy Chair Apps Lab</title>
+  <link rel="stylesheet" href="styles.css?v=2" />
+  <style>
+    /* =====================================================
+       GLYCEMIC LOAD TRACKER PAGE
+       ===================================================== */
+
+    .glt-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Hero */
+    .glt-hero {
+      width: 100%;
+      text-align: center;
+      padding: 4rem 1.5rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .glt-hero::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 720px;
+      height: 720px;
+      background: radial-gradient(
+        circle,
+        rgba(123, 63, 228, 0.18) 0%,
+        rgba(46, 197, 211, 0.08) 45%,
+        transparent 70%
+      );
+      filter: blur(70px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .glt-hero > * { position: relative; z-index: 1; }
+
+    .glt-app-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.1s;
+    }
+
+    .glt-app-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .glt-title {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 6vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -1px;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.2s;
+    }
+
+    .glt-tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+      color: var(--ink-soft);
+      margin-bottom: 0.4rem;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.3s;
+    }
+
+    .glt-sub-tagline {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 420px;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.4s;
+    }
+
+    .glt-platform-badges {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.75rem;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.45s;
+    }
+
+    .glt-platform-badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      background: var(--border);
+      border-radius: 100px;
+      padding: 0.25rem 0.7rem;
+    }
+
+    .glt-store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--ink);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 13px;
+      padding: 0.7rem 1.4rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: opacity 200ms ease, transform 200ms ease;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.5s;
+    }
+
+    .glt-store-btn:hover {
+      opacity: 0.8;
+      transform: translateY(-1px);
+    }
+
+    .glt-store-btn svg {
+      flex-shrink: 0;
+    }
+
+    .glt-store-btn-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      line-height: 1.2;
+    }
+
+    .glt-store-btn-text small {
+      font-size: 0.7rem;
+      font-weight: 400;
+      opacity: 0.75;
+      letter-spacing: 0.02em;
+    }
+
+    .glt-store-btn-text strong {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .glt-coming-soon-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.75rem;
+      animation: fadeUp 0.5s ease-out both;
+      animation-delay: 0.6s;
+    }
+
+    /* Sections */
+    .glt-section {
+      width: 100%;
+      max-width: 800px;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .glt-section-title {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border);
+      position: relative;
+    }
+
+    .glt-section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 48px;
+      height: 2px;
+      background: var(--grad);
+    }
+
+    /* The formula */
+    .glt-formula-box {
+      background: linear-gradient(135deg, rgba(123, 63, 228, 0.06) 0%, rgba(46, 197, 211, 0.06) 100%);
+      border: 1px solid rgba(123, 63, 228, 0.15);
+      border-radius: 16px;
+      padding: 1.75rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .glt-formula-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.9rem;
+      color: var(--ink);
+      overflow-x: auto;
+    }
+
+    .glt-formula-lines span {
+      white-space: nowrap;
+    }
+
+    .glt-formula-box p {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      line-height: 1.7;
+    }
+
+    /* Feature cards */
+    .glt-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .glt-feature-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+
+    .glt-feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--grad);
+    }
+
+    .glt-feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-violet);
+    }
+
+    .glt-feature-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--grad);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-bottom: 0.2rem;
+    }
+
+    .glt-feature-icon svg {
+      color: #fff;
+    }
+
+    .glt-feature-card h3 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    .glt-feature-card p {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    /* Why section */
+    .glt-why-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .glt-why-item {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: box-shadow 200ms ease;
+    }
+
+    .glt-why-item:hover {
+      box-shadow: var(--shadow-violet);
+    }
+
+    .glt-why-num {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 1.6rem;
+      text-align: right;
+    }
+
+    .glt-why-item h3 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+
+    .glt-why-item p {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+    }
+
+    /* Privacy callout */
+    .glt-privacy {
+      background: linear-gradient(135deg, rgba(123, 63, 228, 0.06) 0%, rgba(46, 197, 211, 0.06) 100%);
+      border: 1px solid rgba(123, 63, 228, 0.15);
+      border-radius: 16px;
+      padding: 2rem 2.25rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .glt-privacy-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--grad);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .glt-privacy h2 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .glt-privacy p {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      max-width: 460px;
+      line-height: 1.7;
+    }
+
+    /* Tip jar */
+    .glt-tip {
+      text-align: center;
+      padding: 2rem 1.5rem 1rem;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      line-height: 1.7;
+    }
+
+    .glt-tip strong {
+      color: var(--ink);
+    }
+
+    /* Disclaimer */
+    .glt-disclaimer {
+      width: 100%;
+      max-width: 800px;
+      padding: 1rem 1.5rem 4rem;
+    }
+
+    .glt-disclaimer-box {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+    }
+
+    .glt-disclaimer-box svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--muted);
+    }
+
+    .glt-disclaimer-box p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* Responsive */
+    @media (max-width: 720px) {
+      .glt-features {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .glt-features {
+        grid-template-columns: 1fr;
+      }
+
+      .glt-privacy,
+      .glt-formula-box {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="legal-header">
+    <a href="index.html">
+      <img src="logo.png" alt="Easy Chair Apps Lab" />
+    </a>
+  </header>
+
+  <main class="glt-main">
+
+    <!-- Hero -->
+    <section class="glt-hero">
+      <div class="glt-app-icon">
+        <img src="glycemicloadtracker/icon.png" alt="Glycemic Load Tracker app icon" />
+      </div>
+      <h1 class="glt-title">Glycemic Load Tracker</h1>
+      <p class="glt-tagline">Know the number before you eat it.</p>
+      <p class="glt-sub-tagline">Log a food in two taps. The app does the glycemic math.</p>
+      <div class="glt-platform-badges">
+        <span class="glt-platform-badge">iPhone</span>
+        <span class="glt-platform-badge">iPad</span>
+      </div>
+      <a href="#" class="glt-store-btn" aria-label="Download on the App Store">
+        <!-- Apple logo -->
+        <svg width="22" height="27" viewBox="0 0 814 1000" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.5-150.3-88.5l-10.2-12.8c-52.5-64.3-101.1-143.3-117.9-220.9-8.4-38.5-12.8-76.3-12.8-113.5 0-149.6 98.4-228.9 194.7-228.9 51.9 0 95.2 33.5 127.4 33.5 30.8 0 79.4-35.5 138.4-35.5 22.1 0 98.6 2 157.5 64.6zM547.3 79.6C571 50.6 588.5 10.1 588.5 0c0-2.5-.3-5.1-.6-7.7-.3-2.6 0 0 0 0-23.8 2.9-51.5 16.6-71.3 37.3C497.7 51.2 478 91.7 478 131.6c0 2.9.3 5.8.6 8.7 2.9.3 6.1.6 9.3.6 22.4 0 47.8-12.5 59.4-61.3z"/>
+        </svg>
+        <span class="glt-store-btn-text">
+          <small>Download on the</small>
+          <strong>App Store</strong>
+        </span>
+      </a>
+      <p class="glt-coming-soon-note">Coming soon</p>
+    </section>
+
+    <!-- The formula -->
+    <section class="glt-section">
+      <h2 class="glt-section-title">The number that matters</h2>
+      <div class="glt-formula-box">
+        <div class="glt-formula-lines">
+          <span>net carbs &nbsp;&nbsp;&nbsp;&nbsp; = total carbohydrate &minus; fiber</span>
+          <span>glycemic load = glycemic index &times; net carbs / 100</span>
+        </div>
+        <p>A rice cake has a glycemic index of 82 &mdash; high. But one cake carries only about 7&nbsp;g of
+           net carbs, so its glycemic load is roughly 6 &mdash; low. That gap is why load, not index, is
+           the number worth tracking, and why doing it by hand is tedious enough that nobody keeps it up.</p>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="glt-section">
+      <h2 class="glt-section-title">Features</h2>
+      <div class="glt-features">
+
+        <div class="glt-feature-card">
+          <div class="glt-feature-icon">
+            <!-- Zap icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <h3>Two Taps to Log</h3>
+          <p>The add sheet opens with your most-used and most-recent foods already listed, before you type anything. Adjust servings or delete an entry in one tap; swipe to remove.</p>
+        </div>
+
+        <div class="glt-feature-card">
+          <div class="glt-feature-icon">
+            <!-- Gauge icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 17a9 9 0 1 1 18 0"/><path d="M12 17l4-5"/><circle cx="12" cy="17" r="1.5"/>
+            </svg>
+          </div>
+          <h3>Daily Goal Gauge</h3>
+          <p>A gauge shows total glycemic load against your own daily goal, graded green, orange, or red. Every food carries the same colour chip, so the good swaps are obvious at a glance.</p>
+        </div>
+
+        <div class="glt-feature-card">
+          <div class="glt-feature-icon">
+            <!-- Calendar icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <h3>Any Day, Not Just Today</h3>
+          <p>A week strip and a date picker let you back-fill days you missed. Day totals cover net carbs, total carbs, fiber, saturated fat, and calories, with a callout for the biggest contributor.</p>
+        </div>
+
+        <div class="glt-feature-card">
+          <div class="glt-feature-icon">
+            <!-- Book icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+          </div>
+          <h3>One Searchable Library</h3>
+          <p>Single foods and multi-ingredient meals live in the same list &mdash; no guessing where you saved something. Filter by food or meal and by category; sort by name, index, load, or recency.</p>
+        </div>
+
+        <div class="glt-feature-card">
+          <div class="glt-feature-icon">
+            <!-- Database icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/>
+            </svg>
+          </div>
+          <h3>USDA Database Built In</h3>
+          <p>Around 7,400 foods with their nutrition already filled in, searchable offline. Find the food, pick the serving, done &mdash; no typing numbers off a packet, and no network. 59 common foods are pre-loaded.</p>
+        </div>
+
+        <div class="glt-feature-card">
+          <div class="glt-feature-icon">
+            <!-- Camera icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>
+            </svg>
+          </div>
+          <h3>Scan the Label</h3>
+          <p>Point the camera at a Nutrition Facts panel and it fills in serving size, calories, total carbs, fiber, and saturated fat. The raw recognized text always stays visible so you can fix anything it got wrong. All on-device.</p>
+        </div>
+
+        <div class="glt-feature-card">
+          <div class="glt-feature-icon">
+            <!-- Check circle icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h3>Index Filled In For You</h3>
+          <p>Glycemic index comes from a built-in table of 166 foods with aliases, plus a category estimate when nothing matches. Every value is overridable, and the app always tells you where the number came from.</p>
+        </div>
+
+        <div class="glt-feature-card">
+          <div class="glt-feature-icon">
+            <!-- Layers icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
+            </svg>
+          </div>
+          <h3>Meals That Roll Up</h3>
+          <p>Build a meal from foods and say how many servings it makes. Per-serving totals update live, with the glycemic index weighted by net carbs &mdash; the way the arithmetic actually works.</p>
+        </div>
+
+        <div class="glt-feature-card">
+          <div class="glt-feature-icon">
+            <!-- Bar chart icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+              <rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="4" width="4" height="17" rx="1"/>
+            </svg>
+          </div>
+          <h3>Weekly &amp; Monthly Reports</h3>
+          <p>Total and daily-average load, a bar chart with your goal line, per-week summaries, best and highest day, and the share of days within goal. Days you did not log are drawn as gaps, not zeros.</p>
+        </div>
+
+        <div class="glt-feature-card">
+          <div class="glt-feature-icon">
+            <!-- Search icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+          </div>
+          <h3>Browse the Reference Table</h3>
+          <p>The whole glycemic index table is searchable from Settings, category estimates included. Help explains index, load, and net carbs in plain language, and why they differ.</p>
+        </div>
+
+        <div class="glt-feature-card">
+          <div class="glt-feature-icon">
+            <!-- Download icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+          </div>
+          <h3>CSV Export &amp; Import</h3>
+          <p>Export your foods and your journal as CSV, with net carbs and load already worked out, and import them back. Your records are yours to take anywhere.</p>
+        </div>
+
+        <div class="glt-feature-card">
+          <div class="glt-feature-icon">
+            <!-- Cloud icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
+            </svg>
+          </div>
+          <h3>Your Settings, Your Sync</h3>
+          <p>Light, dark, or automatic theme. Metric or US serving units. A daily goal with the standard ranges explained. Optional iCloud sync runs through your own private account &mdash; off by default.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Why Glycemic Load Tracker -->
+    <section class="glt-section">
+      <h2 class="glt-section-title">Why Glycemic Load Tracker?</h2>
+      <div class="glt-why-list">
+
+        <div class="glt-why-item">
+          <span class="glt-why-num">1</span>
+          <div>
+            <h3>It does the part people give up on</h3>
+            <p>Looking up a glycemic index and multiplying it by net carbs is exactly the friction that kills a tracking habit by day three. Two taps, and it is done.</p>
+          </div>
+        </div>
+
+        <div class="glt-why-item">
+          <span class="glt-why-num">2</span>
+          <div>
+            <h3>Load, not just index</h3>
+            <p>Index charts rank foods; carb counters count grams. Only load ties the two to the portion you actually ate.</p>
+          </div>
+        </div>
+
+        <div class="glt-why-item">
+          <span class="glt-why-num">3</span>
+          <div>
+            <h3>Honest about estimates</h3>
+            <p>Every glycemic index shows its source &mdash; a reference match, a category estimate, or your own value &mdash; so a guess never masquerades as a measurement.</p>
+          </div>
+        </div>
+
+        <div class="glt-why-item">
+          <span class="glt-why-num">4</span>
+          <div>
+            <h3>Current data, not recycled charts</h3>
+            <p>The reference values come from the 2021 international tables, the peer-reviewed systematic review of studies run to the ISO standard. Watermelon, the food every GI article calls high, was revised down from 76 to 50 in that review &mdash; charts still circulating online have the old number.</p>
+          </div>
+        </div>
+
+        <div class="glt-why-item">
+          <span class="glt-why-num">5</span>
+          <div>
+            <h3>Honest about gaps</h3>
+            <p>Un-journaled days are drawn as gaps, not zeros. A blank day is a hole in the record, not a perfect score. The reports do not flatter you.</p>
+          </div>
+        </div>
+
+        <div class="glt-why-item">
+          <span class="glt-why-num">6</span>
+          <div>
+            <h3>Genuinely private</h3>
+            <p>No account, no ads, no analytics SDK, no network calls. Health-adjacent data never leaves the device, and the privacy manifest declares zero data collected.</p>
+          </div>
+        </div>
+
+        <div class="glt-why-item">
+          <span class="glt-why-num">7</span>
+          <div>
+            <h3>Works offline, always</h3>
+            <p>Airplane mode, a basement grocery aisle, a plane &mdash; it does not care. The glycemic index lookup, the USDA database, and label scanning all run on your device.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Privacy callout -->
+    <section class="glt-section">
+      <div class="glt-privacy">
+        <div class="glt-privacy-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h2>No account. No ads. No tracking.</h2>
+        <p>Your food log stays on your device. Glycemic index lookup and label scanning are entirely on-device, and iCloud sync &mdash; if you turn it on &mdash; runs through your own private account that we can never see.</p>
+      </div>
+    </section>
+
+    <!-- Tip jar -->
+    <div class="glt-tip">
+      <strong>Glycemic Load Tracker is free.</strong> If it helps you keep the habit, a small tip keeps it going.
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="glt-disclaimer">
+      <div class="glt-disclaimer-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        <p><strong>Estimates, not medical advice.</strong> Published glycemic index values are averages with real measurement error, and they shift with variety, ripeness, processing, and cooking. Glycemic Load Tracker does not diagnose, treat, or dose anything. Talk to a qualified healthcare professional about decisions concerning your health.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Easy Chair Apps Lab, LLC. All rights reserved.</p>
+    <p style="margin-top:0.5rem;">
+      <a href="index.html">Home</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="support.html">Support</a>
+    </p>
+  </footer>
+
+</body>
+</html>
