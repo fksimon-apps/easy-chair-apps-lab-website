@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Glycemic Load Tracker — Know the number before you eat it. Log a food in two taps and the app does the glycemic math: built-in glycemic index table, label scanning, daily goal gauge, and weekly reports. iPhone &amp; iPad." />
-  <title>Glycemic Load Tracker | Easy Chair Apps Lab</title>
+  <meta name="description" content="Glykos &mdash; know the number before you eat it, and what to eat instead. Every food shows the alternatives that carry less glycemic load at a comparable serving, with a built-in glycemic index table, label scanning, and daily goals. Private and offline. iPhone &amp; iPad." />
+  <title>Glykos | Easy Chair Apps Lab</title>
   <link rel="stylesheet" href="styles.css?v=2" />
   <style>
     /* =====================================================
-       GLYCEMIC LOAD TRACKER PAGE
+       GLYKOS PAGE
        ===================================================== */
 
     .glt-main {
@@ -458,11 +458,11 @@
     <!-- Hero -->
     <section class="glt-hero">
       <div class="glt-app-icon">
-        <img src="glycemicloadtracker/icon.png" alt="Glycemic Load Tracker app icon" />
+        <img src="glycemicloadtracker/icon.png" alt="Glykos app icon" />
       </div>
-      <h1 class="glt-title">Glycemic Load Tracker</h1>
+      <h1 class="glt-title">Glykos</h1>
       <p class="glt-tagline">Know the number before you eat it.</p>
-      <p class="glt-sub-tagline">Log a food in two taps. The app does the glycemic math.</p>
+      <p class="glt-sub-tagline">And know what to eat instead.</p>
       <div class="glt-platform-badges">
         <span class="glt-platform-badge">iPhone</span>
         <span class="glt-platform-badge">iPad</span>
@@ -501,13 +501,46 @@
 
         <div class="glt-feature-card">
           <div class="glt-feature-icon">
+            <!-- Swap icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+            </svg>
+          </div>
+          <h3>What to Eat Instead</h3>
+          <p>Every food you open shows the alternatives that carry less glycemic load at a comparable serving, ranked by how much load the swap saves. Foods you already keep are marked &mdash; a swap is only taken if it is available.</p>
+        </div>
+
+        <div class="glt-feature-card">
+          <div class="glt-feature-icon">
+            <!-- Balance scale icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3v18"/><path d="M5 7h14"/><path d="M8 21h8"/><path d="M5 7l-3 6a3 3 0 0 0 6 0z"/><path d="M19 7l-3 6a3 3 0 0 0 6 0z"/>
+            </svg>
+          </div>
+          <h3>Comparable Servings, Not Smaller Ones</h3>
+          <p>A candidate has to carry between half and twice the original&rsquo;s net carbohydrate to qualify, save at least 15% of the load and 2.0 outright, and have a measured index rather than a category estimate. It reports the gap between two numbers &mdash; it does not tell anyone what to eat.</p>
+        </div>
+
+        <div class="glt-feature-card">
+          <div class="glt-feature-icon">
             <!-- Zap icon -->
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
             </svg>
           </div>
           <h3>Two Taps to Log</h3>
-          <p>The add sheet opens with your most-used and most-recent foods already listed, before you type anything. Adjust servings or delete an entry in one tap; swipe to remove.</p>
+          <p>The add sheet opens with your most-used and most-recent foods already listed, before you type anything. Edit servings or delete an entry in one tap; swipe to remove.</p>
+        </div>
+
+        <div class="glt-feature-card">
+          <div class="glt-feature-icon">
+            <!-- Clock icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/>
+            </svg>
+          </div>
+          <h3>The Shape of the Day</h3>
+          <p>Load by part of the day &mdash; morning, midday, afternoon, evening, late &mdash; so three moderate meals read differently from the same number carried in one. Each entry takes its part of the day from the clock, so writing the day up at bedtime does not stack it all into the evening.</p>
         </div>
 
         <div class="glt-feature-card">
@@ -518,7 +551,7 @@
             </svg>
           </div>
           <h3>Daily Goal Gauge</h3>
-          <p>A gauge shows total glycemic load against your own daily goal, graded green, orange, or red. Every food carries the same colour chip, so the good swaps are obvious at a glance.</p>
+          <p>A gauge shows total glycemic load against your own daily goal, graded green, orange, or red. It is a progress bar, not a dial: the goal line stays visible when the day runs past it, so 10 over and 100 over do not look the same.</p>
         </div>
 
         <div class="glt-feature-card">
@@ -540,7 +573,7 @@
             </svg>
           </div>
           <h3>One Searchable Library</h3>
-          <p>Single foods and multi-ingredient meals live in the same list &mdash; no guessing where you saved something. Filter by food or meal and by category; sort by name, index, load, or recency.</p>
+          <p>Single foods and multi-ingredient meals live in the same list &mdash; no guessing where you saved something. The app starts empty and fills up with what you actually eat. Filter by food or meal and by category; sort by name, index, load, or recency.</p>
         </div>
 
         <div class="glt-feature-card">
@@ -551,7 +584,18 @@
             </svg>
           </div>
           <h3>USDA Database Built In</h3>
-          <p>Around 7,400 foods with their nutrition already filled in, searchable offline. Find the food, pick the serving, done &mdash; no typing numbers off a packet, and no network. 59 common foods are pre-loaded.</p>
+          <p>Around 7,400 foods with their nutrition already filled in, searchable offline. Find the food, pick the serving, done &mdash; no typing numbers off a packet, and no network.</p>
+        </div>
+
+        <div class="glt-feature-card">
+          <div class="glt-feature-icon">
+            <!-- Narrowing list icon -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="11" y2="18"/>
+            </svg>
+          </div>
+          <h3>One Search Box</h3>
+          <p>It covers your own foods and the built-in USDA database at once, so you never have to guess which list a food is in. Search never dead-ends: a &ldquo;Create&rdquo; row sits above every result, with the glycemic index already resolved from whatever you typed.</p>
         </div>
 
         <div class="glt-feature-card">
@@ -562,7 +606,7 @@
             </svg>
           </div>
           <h3>Scan the Label</h3>
-          <p>Point the camera at a Nutrition Facts panel and it fills in serving size, calories, total carbs, fiber, and saturated fat. The raw recognized text always stays visible so you can fix anything it got wrong. All on-device.</p>
+          <p>Point the camera at a Nutrition Facts panel and it fills in serving size, calories, total carbs, fiber, and saturated fat. The raw recognized text always stays visible so you can copy anything it got wrong. All on-device.</p>
         </div>
 
         <div class="glt-feature-card">
@@ -573,7 +617,7 @@
             </svg>
           </div>
           <h3>Index Filled In For You</h3>
-          <p>Glycemic index comes from a built-in table of 166 foods with aliases, plus a category estimate when nothing matches. Every value is overridable, and the app always tells you where the number came from.</p>
+          <p>Glycemic index comes from a built-in table of 166 foods with aliases, plus a category estimate when nothing matches. Every value is overridable, and the app always tells you where the number came from. Net carbs and load update live while you type.</p>
         </div>
 
         <div class="glt-feature-card">
@@ -616,8 +660,8 @@
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
           </div>
-          <h3>CSV Export &amp; Import</h3>
-          <p>Export your foods and your journal as CSV, with net carbs and load already worked out, and import them back. Your records are yours to take anywhere.</p>
+          <h3>Backup &amp; Restore</h3>
+          <p>A complete JSON backup of every food, meal, and journal entry &mdash; export it, restore it, move it between devices. Your records are yours to take anywhere.</p>
         </div>
 
         <div class="glt-feature-card">
@@ -634,13 +678,21 @@
       </div>
     </section>
 
-    <!-- Why Glycemic Load Tracker -->
+    <!-- Why Glykos -->
     <section class="glt-section">
-      <h2 class="glt-section-title">Why Glycemic Load Tracker?</h2>
+      <h2 class="glt-section-title">Why Glykos?</h2>
       <div class="glt-why-list">
 
         <div class="glt-why-item">
           <span class="glt-why-num">1</span>
+          <div>
+            <h3>It answers the question a tracker leaves you with</h3>
+            <p>Every food log tells you what you ate. Glykos tells you what you could have eaten instead, and what the difference comes to. That is arithmetic no calorie counter can do, because calories are additive and a glycemic index is not.</p>
+          </div>
+        </div>
+
+        <div class="glt-why-item">
+          <span class="glt-why-num">2</span>
           <div>
             <h3>It does the part people give up on</h3>
             <p>Looking up a glycemic index and multiplying it by net carbs is exactly the friction that kills a tracking habit by day three. Two taps, and it is done.</p>
@@ -648,7 +700,7 @@
         </div>
 
         <div class="glt-why-item">
-          <span class="glt-why-num">2</span>
+          <span class="glt-why-num">3</span>
           <div>
             <h3>Load, not just index</h3>
             <p>Index charts rank foods; carb counters count grams. Only load ties the two to the portion you actually ate.</p>
@@ -656,7 +708,7 @@
         </div>
 
         <div class="glt-why-item">
-          <span class="glt-why-num">3</span>
+          <span class="glt-why-num">4</span>
           <div>
             <h3>Honest about estimates</h3>
             <p>Every glycemic index shows its source &mdash; a reference match, a category estimate, or your own value &mdash; so a guess never masquerades as a measurement.</p>
@@ -664,7 +716,7 @@
         </div>
 
         <div class="glt-why-item">
-          <span class="glt-why-num">4</span>
+          <span class="glt-why-num">5</span>
           <div>
             <h3>Current data, not recycled charts</h3>
             <p>The reference values come from the 2021 international tables, the peer-reviewed systematic review of studies run to the ISO standard. Watermelon, the food every GI article calls high, was revised down from 76 to 50 in that review &mdash; charts still circulating online have the old number.</p>
@@ -672,7 +724,7 @@
         </div>
 
         <div class="glt-why-item">
-          <span class="glt-why-num">5</span>
+          <span class="glt-why-num">6</span>
           <div>
             <h3>Honest about gaps</h3>
             <p>Un-journaled days are drawn as gaps, not zeros. A blank day is a hole in the record, not a perfect score. The reports do not flatter you.</p>
@@ -680,7 +732,7 @@
         </div>
 
         <div class="glt-why-item">
-          <span class="glt-why-num">6</span>
+          <span class="glt-why-num">7</span>
           <div>
             <h3>Genuinely private</h3>
             <p>No account, no ads, no analytics SDK, no network calls. Health-adjacent data never leaves the device, and the privacy manifest declares zero data collected.</p>
@@ -688,7 +740,7 @@
         </div>
 
         <div class="glt-why-item">
-          <span class="glt-why-num">7</span>
+          <span class="glt-why-num">8</span>
           <div>
             <h3>Works offline, always</h3>
             <p>Airplane mode, a basement grocery aisle, a plane &mdash; it does not care. The glycemic index lookup, the USDA database, and label scanning all run on your device.</p>
@@ -711,18 +763,13 @@
       </div>
     </section>
 
-    <!-- Tip jar -->
-    <div class="glt-tip">
-      <strong>Glycemic Load Tracker is free.</strong> If it helps you keep the habit, a small tip keeps it going.
-    </div>
-
     <!-- Disclaimer -->
     <div class="glt-disclaimer">
       <div class="glt-disclaimer-box">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
         </svg>
-        <p><strong>Estimates, not medical advice.</strong> Published glycemic index values are averages with real measurement error, and they shift with variety, ripeness, processing, and cooking. Glycemic Load Tracker does not diagnose, treat, or dose anything. Talk to a qualified healthcare professional about decisions concerning your health.</p>
+        <p><strong>Estimates, not medical advice.</strong> Published glycemic index values are averages with real measurement error, and they shift with variety, ripeness, processing, and cooking. Glykos does not diagnose, treat, or dose anything. Talk to a qualified healthcare professional about decisions concerning your health.</p>
       </div>
     </div>
 
